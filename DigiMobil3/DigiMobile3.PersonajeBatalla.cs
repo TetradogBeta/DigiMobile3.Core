@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace DigiMobile{
 	public class PersonajeBatalla{
 		static Random r=new Random();
@@ -41,7 +44,7 @@ namespace DigiMobile{
 		}
 		public int CountCard(CartaAtaque carta){
 			int count=0;
-				for(int i = 0;i<cartasUsadasSatisfsctoriamente.Count;i++)
+				for(int i = 0;i<cartasUsadasSatisfactoriamente.Count;i++)
 					if(cartasUsadasSatisfactoriamente[i]==carta)
 						count++;
 			return count;
@@ -49,10 +52,10 @@ namespace DigiMobile{
 		public void Evolution(CartaEvolucion evoCard){
 			int acierto=0;
 			switch(evoCard){
-				case evo00:acierto=25;break;
-				case evo01:acierto=35;break;
-				case evo10:acierto=55;break;
-				case evo11:acierto=85;break;
+				case CartaEvolucion.Evo00:acierto=25;break;
+				case CartaEvolucion.Evo01: acierto=35;break;
+				case CartaEvolucion.Evo10: acierto=55;break;
+				case CartaEvolucion.Evo11: acierto=85;break;
 			}
 			if(acierto<=r.Next(100)){
 				//falta decidir cuanto sube
