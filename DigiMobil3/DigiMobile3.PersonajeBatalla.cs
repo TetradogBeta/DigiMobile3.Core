@@ -4,23 +4,20 @@ using System.Collections.Generic;
 namespace DigiMobile{
 	public class PersonajeBatalla{
 		static Random r=new Random();
-		
-		Personaje personaje;
-		int vida;
-		List<CartaAtaque> cartasUsadasSatisfactoriamente;
+        List<CartaAtaque> cartasUsadasSatisfactoriamente;
 		//falta saber como funciona la carta powerUp
 		public int Ataque{
 			get{
 				const int MULTIPLICADOR=5;
 				
-				return personaje.AtaqueBase+CountCard(CartaAtaque.Ataque)*MULTIPLICADOR;
+				return Personaje.AtaqueBase+CountCard(CartaAtaque.Ataque)*MULTIPLICADOR;
 			}
 		}
 		public int Defensa{
 			get{
 				const int MULTIPLICADOR=4;
 				
-				return personaje.DefensaBase+CountCard(CartaAtaque.Defensa)*MULTIPLICADOR;
+				return Personaje.DefensaBase+CountCard(CartaAtaque.Defensa)*MULTIPLICADOR;
 			}
 		}
 		
@@ -28,21 +25,23 @@ namespace DigiMobile{
 			get{
 				const int MULTIPLICADOR=3;
 				
-				return personaje.VelocidadBase+CountCard(CartaAtaque.Velocidad)*MULTIPLICADOR;
+				return Personaje.VelocidadBase+CountCard(CartaAtaque.Velocidad)*MULTIPLICADOR;
 			}
 		}
 		public int Vida{
-			get{
-				return vida;
-			}
+            get;
+            private set;
 		}
 		public double PorcentajeVida{
 			
 			get{
-				return (Vida/personaje.VidaBase)*100.0;
+				return (Vida/Personaje.VidaBase)*100.0;
 			}
 		}
-		public int CountCard(CartaAtaque carta){
+
+        public Personaje Personaje { get; private set; }
+
+        public int CountCard(CartaAtaque carta){
 			int count=0;
 				for(int i = 0;i<cartasUsadasSatisfactoriamente.Count;i++)
 					if(cartasUsadasSatisfactoriamente[i]==carta)
